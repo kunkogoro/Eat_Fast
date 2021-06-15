@@ -45,6 +45,10 @@ public class LoginTabFragment extends Fragment {
 
    private String url = ConnecttionConfigure.URL+ConnecttionConfigure.LOGIN;
 
+
+    public LoginTabFragment() {
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -73,97 +77,11 @@ public class LoginTabFragment extends Fragment {
                     Toast.makeText(getContext(), "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
                 }else{
                     loginController.login(user,pass);
+                    //loginController.showResultLogin();
                 }
             }
         });
     }
-
-    void login(String user,String pass){
-        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
-
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Toast.makeText(getContext(), "đăng nhập thành công", Toast.LENGTH_SHORT).show();
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                System.out.println("ERROR: " +error);
-                Toast.makeText(getContext(), "đăng nhập thất bại "  + error , Toast.LENGTH_SHORT).show();
-
-            }
-        }){
-
-            @Nullable
-            @org.jetbrains.annotations.Nullable
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-
-                Map<String, String> map = new HashMap<>();
-
-                map.put("tai_khoan", user);
-                map.put("mat_khau", pass);
-
-                return map;
-            }
-
-        };
-
-
-//        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, url, null, new Response.Listener<JSONArray>() {
-//            @Override
-//            public void onResponse(JSONArray response) {
-//                if (response != null){
-//                    Toast.makeText(getContext(), "đăng nhập thành công", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//        }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//
-//                System.out.println("ERROR: "+error);
-//                Toast.makeText(getContext(), "đăng nhập thất bại "  + error , Toast.LENGTH_SHORT).show();
-//            }
-//        }){
-//
-//            @Nullable
-//        @org.jetbrains.annotations.Nullable
-//        @Override
-//            protected Map<String, String> getParams() throws AuthFailureError {
-//
-//                Map<String, String> map = new HashMap<>();
-//
-//                map.put("tai_khoan", user);
-//                map.put("mat_khau", pass);
-//
-//                return map;
-//            }
-//        };
-
-        stringRequest.setRetryPolicy(new RetryPolicy() {
-            @Override
-            public int getCurrentTimeout() {
-                return 50000;
-            }
-
-            @Override
-            public int getCurrentRetryCount() {
-                return 50000;
-            }
-
-            @Override
-            public void retry(VolleyError error) throws VolleyError {
-
-            }
-        });
-
-        requestQueue.add(stringRequest);
-        }
-
-
-  //  {
-
 
     private void anim() {
         username.setTranslationY(300);
@@ -190,6 +108,19 @@ public class LoginTabFragment extends Fragment {
         login = root.findViewById(R.id.appCompatButton);
         loginController = new LoginController(this);
 
+    }
+
+    void showLoginSuccess(){
+        Toast.makeText(getContext(), "Đăng nhập thành công.", Toast.LENGTH_SHORT).show();
+    }
+    void showLoginFail(){
+        Toast.makeText(getContext(), "Sai mật khẩu.", Toast.LENGTH_SHORT).show();
+    }
+    void showUserNotExitst(){
+        Toast.makeText(getContext(), "Tài khoản không tồn tại.", Toast.LENGTH_SHORT).show();
+    }
+    void showErrorSystem(){
+        Toast.makeText(getContext(), "Lỗi hệ thống, vui lòng thử lại sau.", Toast.LENGTH_SHORT).show();
     }
 
 

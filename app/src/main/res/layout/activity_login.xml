@@ -51,16 +51,17 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.057" />
 
-            <ImageView
-                android:id="@+id/tab_google"
-                android:layout_width="50dp"
+
+            <com.google.android.gms.common.SignInButton
+                android:id="@+id/sign_in_button"
+                android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:layout_marginTop="27dp"
                 android:elevation="35dp"
-                android:src="@drawable/activity_login_google"
+                android:text=" "
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/tab_layout"
-                app:layout_constraintHorizontal_bias="0.617"
+                app:layout_constraintHorizontal_bias="0.702"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/view_paper"
                 app:layout_constraintVertical_bias="0.0" />

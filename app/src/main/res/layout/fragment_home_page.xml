@@ -25,14 +25,14 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
                     android:layout_marginLeft="10dp"
                     android:src="@drawable/ic_menu"/>
 
                 <ImageView
                     android:id="@+id/menu_item"
-                    android:layout_width="30dp"
+                    android:layout_width="25dp"
                     android:layout_height="30dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="5dp"
@@ -44,16 +44,17 @@
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:text="Đại học Nông Lâm"
-                    android:textSize="20sp"
+                    android:textSize="16sp"
                     android:fontFamily="monospace"
                     android:textStyle="bold"
                     />
 
                 <ImageView
+                    android:id="@+id/user"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_marginLeft="40dp"
-                    android:src="@drawable/ic_account"/>
+                    android:src="@drawable/ic_account" />
 
             </LinearLayout>
 

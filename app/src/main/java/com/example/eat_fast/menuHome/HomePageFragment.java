@@ -1,17 +1,32 @@
 package com.example.eat_fast.menuHome;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.ImageRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.eat_fast.R;
+import com.example.eat_fast.beens.User;
+import com.example.eat_fast.login.LoginActivity;
+import com.example.eat_fast.user.InfoUserActivity;
 
+import java.io.Serializable;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.ArrayList;
 
 /**
@@ -39,6 +54,8 @@ public class HomePageFragment extends Fragment {
     private ArrayList<ItemProductPopular> items1;
 
     private RecyclerView recyListProduct1;
+    private ImageView imageU;
+    private User user;
 
 
     public HomePageFragment() {
@@ -79,11 +96,40 @@ public class HomePageFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_home_page, container, false);
 
+        Bundle bundle = getArguments();
+        if (bundle != null){
+            user = (User) bundle.getSerializable("user");
+        }
+
         getView(view);
+
+        event();
 
         init(container);
 
+
+
         return view;
+
+    }
+
+    private void event() {
+
+        imageU.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent;
+                if (user != null){
+                    intent = new Intent(getContext(), InfoUserActivity.class);
+                    intent.putExtra("user", (Serializable) user);
+
+                    startActivity(intent);
+                }else {
+                    intent  = new Intent(getContext(), LoginActivity.class);
+                    startActivity(intent);
+                }
+            }
+        });
 
     }
 
@@ -101,10 +147,14 @@ public class HomePageFragment extends Fragment {
     }
 
     void getView(View view){
+
         recyCategory = view.findViewById(R.id.menu_select);
         items = new ArrayList<>();
         loadCategory();
         adapter = new CategoryAdapter(items);
+
+        imageU = view.findViewById(R.id.user);
+
 
 
         recyListProduct = view.findViewById(R.id.product_select);

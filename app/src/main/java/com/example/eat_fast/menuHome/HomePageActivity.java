@@ -6,23 +6,30 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.android.volley.toolbox.ImageRequest;
+import com.android.volley.toolbox.Volley;
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 import com.example.eat_fast.R;
+import com.example.eat_fast.beens.User;
 import com.example.eat_fast.mennuSearch.SearchFragment;
 import com.example.eat_fast.menuCart.CartPageFragment;
 import com.example.eat_fast.menuNotify.NotifyPageFragment;
 import com.example.eat_fast.menuWishlist.WishlistFragment;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class HomePageActivity extends AppCompatActivity {
 
     private MeowBottomNavigation bottomNavigation;
+    private User user;
 
 
 
@@ -33,7 +40,9 @@ public class HomePageActivity extends AppCompatActivity {
 
         getView();
 
+
         addView();
+
 
         eventBottom();
     }
@@ -52,7 +61,18 @@ public class HomePageActivity extends AppCompatActivity {
                         frameLayout = new CartPageFragment();
                         break;
                     case 3:
+
                         frameLayout = new HomePageFragment();
+
+
+
+                        if (user != null){
+                               System.out.println("TAG MAIN: " + user.toString());
+                            Bundle bundle = new Bundle();
+                            bundle.putSerializable("user", (Serializable) user);
+                            frameLayout.setArguments(bundle);
+                        }
+
                         break;
                     case 4:
                         frameLayout = new WishlistFragment();
@@ -88,9 +108,8 @@ public class HomePageActivity extends AppCompatActivity {
     }
 
      void loadFragment(Fragment fragment) {
-        getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout_home,fragment).commit();
 
-        
+        getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout_home,fragment).commit();
     }
 
     private void addView() {
@@ -102,6 +121,10 @@ public class HomePageActivity extends AppCompatActivity {
     }
 
     private void getView() {
+
+        Intent intent = getIntent();
+
+        user = (User) intent.getSerializableExtra("user");
 
         bottomNavigation = findViewById(R.id.bottom_navigation_home);
 

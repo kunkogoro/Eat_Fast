@@ -1,8 +1,9 @@
 package com.example.eat_fast.date;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class DateTime {
+public class DateTime implements Serializable {
 
     //  Lớp này đại diện cho thuộc tính datatime trong mysql
     private int year;
