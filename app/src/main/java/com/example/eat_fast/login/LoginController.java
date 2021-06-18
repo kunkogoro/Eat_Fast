@@ -24,58 +24,62 @@ public class LoginController {
     private LoginModel loginModel;
     private LoginTabFragment loginView;
 
-    public LoginController (LoginTabFragment loginTabFragment){
-        this.loginView = loginTabFragment;
+    public LoginController() {
         this.loginModel = new LoginModel();
-
     }
 
-    void login(String username,String password){
-        loginModel.setContext(loginView.getContext());
-        Handler handler = new Handler(){
+    void login(String username, String password) {
 
-            @Override
-            public void handleMessage(@NonNull Message msg) {
-                super.handleMessage(msg);
+        if (username.isEmpty() || password.isEmpty()) {
+            loginView.showErrorEmpty();
+            return;
+        } else {
+            loginModel.setContext(loginView.getContext());
+            Handler handler = new Handler() {
 
-                   switch (msg.what){
-                       case 0:
-                           loginView.showUserNotExitst();
-                           break;
-                       case 1:
-                           loginView.showLoginFail();
-                           break;
-                       case 2:
-                           loginView.showLoginSuccess();
+                @Override
+                public void handleMessage(@NonNull Message msg) {
+                    super.handleMessage(msg);
 
-                           Bundle bundle = msg.getData();
+                    switch (msg.what) {
+                        case 0:
+                            loginView.showUserNotExitst();
+                            break;
+                        case 1:
+                            loginView.showLoginFail();
+                            break;
+                        case 2:
+                            loginView.showLoginSuccess();
 
-                           User user = (User) bundle.getSerializable("user");
+                            Bundle bundle = msg.getData();
 
-                           System.out.println("OK: "+user.toString());
+                            User user = (User) bundle.getSerializable("user");
 
-                           Intent intent = new Intent(loginView.getContext(),HomePageActivity.class);
+                            System.out.println("OK: " + user.toString());
 
-//                           Bundle bundle1 = new Bundle();
-//                           bundle1.putSerializable("user",user);
+                            Intent intent = new Intent(loginView.getContext(), HomePageActivity.class);
 
+                            intent.putExtra("user", user);
 
-                           intent.putExtra("user",user);
+                            loginView.getContext().startActivity(intent);
+                            break;
+                        case 3:
+                            loginView.showErrorSystem();
+                            break;
+                    }
 
-                           loginView.getContext().startActivity(intent);
-                           break;
-                       case 3:
-                           loginView.showErrorSystem();
-                           break;
-                   }
+                }
 
-               }
+            };
 
-        };
+            loginModel.setHandler(handler);
 
-        loginModel.setHandler(handler);
+            loginModel.login(username, password);
 
-       loginModel.login(username,password);
+        }
+    }
 
+    public void setLoginView(LoginTabFragment loginView) {
+        this.loginView = loginView;
     }
 }

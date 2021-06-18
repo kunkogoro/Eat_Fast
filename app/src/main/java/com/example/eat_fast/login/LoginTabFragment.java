@@ -43,9 +43,6 @@ public class LoginTabFragment extends Fragment {
     private float v = 0;
     private LoginController loginController;
 
-   private String url = ConnecttionConfigure.URL+ConnecttionConfigure.LOGIN;
-
-
     public LoginTabFragment() {
     }
 
@@ -67,18 +64,10 @@ public class LoginTabFragment extends Fragment {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 String user = username.getText().toString().trim();
                 String pass = password.getText().toString().trim();
 
-                //login(user,pass);
-
-                if (user.isEmpty() || pass.isEmpty()){
-                    Toast.makeText(getContext(), "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
-                }else{
-                    loginController.login(user,pass);
-                    //loginController.showResultLogin();
-                }
+                loginController.login(user,pass);
             }
         });
     }
@@ -106,7 +95,8 @@ public class LoginTabFragment extends Fragment {
         password = root.findViewById(R.id.password);
         forgotpass = root.findViewById(R.id.quenmk);
         login = root.findViewById(R.id.appCompatButton);
-        loginController = new LoginController(this);
+        loginController = new LoginController();
+        loginController.setLoginView(this);
 
     }
 
@@ -114,13 +104,16 @@ public class LoginTabFragment extends Fragment {
         Toast.makeText(getContext(), "Đăng nhập thành công.", Toast.LENGTH_SHORT).show();
     }
     void showLoginFail(){
-        Toast.makeText(getContext(), "Sai mật khẩu.", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), "Sai mật khẩu, vui lòng nhập lại.", Toast.LENGTH_SHORT).show();
     }
     void showUserNotExitst(){
         Toast.makeText(getContext(), "Tài khoản không tồn tại.", Toast.LENGTH_SHORT).show();
     }
     void showErrorSystem(){
         Toast.makeText(getContext(), "Lỗi hệ thống, vui lòng thử lại sau.", Toast.LENGTH_SHORT).show();
+    }
+    void showErrorEmpty(){
+        Toast.makeText(getContext(), "Tài khoản và mật khẩu không được bỏ trống.", Toast.LENGTH_SHORT).show();
     }
 
 

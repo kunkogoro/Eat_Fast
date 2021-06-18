@@ -22,6 +22,11 @@ import com.example.eat_fast.R;
 import com.example.eat_fast.beens.User;
 import com.example.eat_fast.connection.ConnecttionConfigure;
 import com.example.eat_fast.menuHome.HomePageActivity;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -34,15 +39,23 @@ import com.google.android.material.tabs.TabLayout;
 
 import org.json.JSONArray;
 
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
+
+import java.sql.Array;
+import java.util.Arrays;
+
+
 public class LoginActivity extends AppCompatActivity {
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
-    private ImageView facebook;
     private GoogleSignInClient mGoogleSignInClient;
     private float v = 0;
     private static int RC_SIGN_IN = 1;
     private SignInButton signInButton;
+    private CallbackManager callbackManager;
+    private LoginButton loginButton;
 
 
     @Override
@@ -53,12 +66,38 @@ public class LoginActivity extends AppCompatActivity {
         getView();
         addTab();
         init();
-        event();
+        eventAPIGoogle();
+        eventAPIFaceBook();
         anim();
 
     }
+    void eventAPIFaceBook(){
+        callbackManager = CallbackManager.Factory.create();
 
-    void event(){
+        loginButton.setReadPermissions(Arrays.asList("email,user_photos,public_profile"));
+
+        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+
+            startActivity(new Intent(LoginActivity.this,HomePageActivity.class));
+
+            }
+
+            @Override
+            public void onCancel() {
+
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+
+            }
+        });
+
+    }
+
+    void eventAPIGoogle(){
 
         signInButton.setSize(SignInButton.SIZE_STANDARD);
 
@@ -84,10 +123,8 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
+        callbackManager.onActivityResult(requestCode,resultCode,data);
         if (requestCode == RC_SIGN_IN) {
-            // The Task returned from this call is always completed, no need to attach
-            // a listener.
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             handleSignInResult(task);
         }
@@ -112,8 +149,6 @@ public class LoginActivity extends AppCompatActivity {
                 String personId = acct.getId();
                 Uri personPhoto = acct.getPhotoUrl();
 
-                System.out.println("User URI: " + personPhoto);
-
                 user.setEmail(personEmail);
                user.setName(personName);
               user.setHinh(String.valueOf(personPhoto));
@@ -124,26 +159,14 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
 
-            // Signed in successfully, show authenticated UI.
-
         } catch (ApiException e) {
-            // The ApiException status code indicates the detailed failure reason.
-            // Please refer to the GoogleSignInStatusCodes class reference for more information.
             Log.w("LOGIN ", "signInResult:failed code=" + e.getStatusCode());
         }
     }
 
     private void anim() {
-       // google.setTranslationY(300);
-        facebook.setTranslationY(300);
         tabLayout.setTranslationY(300);
-
-      //  google.setAlpha(v);
-        facebook.setAlpha(v);
         tabLayout.setAlpha(v);
-
-        facebook.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(400).start();
-       // google.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(600).start();
         tabLayout.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(100).start();
     }
 
@@ -162,14 +185,11 @@ public class LoginActivity extends AppCompatActivity {
     private void getView() {
         tabLayout = findViewById(R.id.tab_layout);
         viewPager = findViewById(R.id.view_paper);
-        //google = findViewById(R.id.tab_google);
-        facebook = findViewById(R.id.tab_facebook);
         signInButton = findViewById(R.id.sign_in_button);
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-
-
+        loginButton = findViewById(R.id.login_button);
     }
 }

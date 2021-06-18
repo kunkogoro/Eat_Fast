@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
+import com.example.eat_fast.sinup.SignupTabFragment;
+
 
 public class LoginAdapter extends FragmentPagerAdapter {
 
