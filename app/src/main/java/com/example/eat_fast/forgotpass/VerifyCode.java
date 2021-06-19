@@ -37,12 +37,12 @@ public class VerifyCode extends AppCompatActivity {
         buttonSubmitCode.setOnClickListener(v -> {
             Intent intent1 = new Intent(this, ChangePassword.class);
             intent1.putExtra("id", id);
-            startActivity(intent1);
-//            if(isRightCode()){
-//                startActivity(intent1);
-//            }else{
-//                Toast.makeText(this, "Mã OTP không đúng", Toast.LENGTH_SHORT).show();
-//            }
+//            startActivity(intent1);
+            if(isRightCode()){
+                startActivity(intent1);
+            }else{
+                Toast.makeText(this, "Mã OTP không đúng", Toast.LENGTH_SHORT).show();
+            }
 
         });
     }
