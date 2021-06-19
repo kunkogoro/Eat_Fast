@@ -20,15 +20,17 @@
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.263"
+        app:layout_constraintVertical_bias="0.202"
         app:layout_constraintWidth_percent=".8" />
 
+
+
     <EditText
-        android:id="@+id/password"
+        android:id="@+id/email"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:hint="Nhập mật khẩu"
+        android:hint="Nhập email"
         android:paddingLeft="20dp"
         android:background="@drawable/activity_login_bg_edittext"
 
@@ -44,13 +46,13 @@
 
 
     <EditText
-        android:id="@+id/repassword"
+        android:id="@+id/password"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
 
         android:layout_marginTop="24dp"
         android:background="@drawable/activity_login_bg_edittext"
-        android:hint="Nhập lại mật khẩu"
+        android:hint="Nhập mật khẩu"
         android:paddingLeft="20dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
@@ -58,8 +60,27 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password"
+        app:layout_constraintTop_toBottomOf="@+id/email"
         app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintWidth_percent=".8" />
+
+    <EditText
+        android:id="@+id/repassword"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="Nhập lại mật khẩu"
+        android:paddingLeft="20dp"
+        android:background="@drawable/activity_login_bg_edittext"
+
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password"
+        app:layout_constraintVertical_bias="0"
         app:layout_constraintWidth_percent=".8" />
 
     <androidx.appcompat.widget.AppCompatButton
