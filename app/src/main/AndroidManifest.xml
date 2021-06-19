@@ -11,7 +11,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Eat_Fast">
-        <activity android:name=".user.InfoUserActivity"></activity>
+        <activity android:name=".forgotpass.ChangePassword"></activity>
+        <activity android:name=".forgotpass.VerifyCode" />
+        <activity android:name=".forgotpass.EnterEmail" />
+        <activity android:name=".user.InfoUserActivity" />
         <activity android:name=".login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,8 +22,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".menuHome.HomePageActivity"></activity>
-        <activity android:name=".introductActivity.IntroductoryActivity"></activity>
+        <activity android:name=".menuHome.HomePageActivity" />
+        <activity android:name=".introductActivity.IntroductoryActivity" />
     </application>
 
 </manifest>
