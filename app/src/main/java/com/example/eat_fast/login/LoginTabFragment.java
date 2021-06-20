@@ -25,7 +25,9 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.eat_fast.R;
 import com.example.eat_fast.connection.ConnecttionConfigure;
+import com.example.eat_fast.forgotpass.ChangePassword;
 import com.example.eat_fast.forgotpass.EnterEmail;
+import com.example.eat_fast.forgotpass.VerifyCode;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 

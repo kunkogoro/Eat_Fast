@@ -34,7 +34,7 @@ public class EnterEmail extends AppCompatActivity {
     AppCompatButton buttonSend;
     EditText editTextEmail;
     String urlGetUser = "https://eatfastandroid.000webhostapp.com/getdata.php";
-    String urlSentEmail = "https://eatfastandroid.000webhostapp.com/sendemail.php";
+    String urlSentEmail = "https://eatfastandroid.000webhostapp.com/phpmailer/index.php";
     List<User> listUser;
     int code;
 
@@ -46,6 +46,7 @@ public class EnterEmail extends AppCompatActivity {
         listUser = new ArrayList<>();
         buttonSend = findViewById(R.id.buttonSendEmail);
         editTextEmail = findViewById(R.id.editTextEmail);
+
         getUser();
 
         buttonSend.setOnClickListener(v -> {
@@ -62,7 +63,6 @@ public class EnterEmail extends AppCompatActivity {
                         intent.putExtra("code", String.valueOf(code));
                         intent.putExtra("id", String.valueOf(getId(email)));
                         startActivity(intent);
-
                     } else {
                         Toast.makeText(this, "Email không tồn tại", Toast.LENGTH_SHORT).show();
                     }
@@ -99,7 +99,7 @@ public class EnterEmail extends AppCompatActivity {
                     }
                 },
                 error -> {
-                    Toast.makeText(this, error.toString(), Toast.LENGTH_SHORT).show();
+
                 });
         requestQueue.add(jsonArrayRequest);
     }
@@ -131,14 +131,13 @@ public class EnterEmail extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, urlSentEmail,
                 response -> {
-                    Toast.makeText(EnterEmail.this, response.toString(), Toast.LENGTH_SHORT).show();
+
                 }, error -> {
 
         }) {
-            @Nullable
-            @org.jetbrains.annotations.Nullable
+
             @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
+            protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
                 params.put("email", email);
                 params.put("code", String.valueOf(code));
