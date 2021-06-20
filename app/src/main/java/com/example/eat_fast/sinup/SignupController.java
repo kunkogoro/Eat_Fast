@@ -20,14 +20,14 @@ public class SignupController {
     }
 
     void register(String user,String pass,String repass,String email){
-
-        if (user.isEmpty() || pass.isEmpty() || pass.isEmpty() || repass.isEmpty() ){
+         int ketqua = signupModel.checkUser(user,pass,repass,email);
+        if ( ketqua==1 ){
             signupView.showErrorEmpty();
             return;
-        }else if (!CheckEmail.emailValidator(email)){
+        }else if (ketqua==2){
             signupView.showErrorEmail();
             return;
-        } else if(!pass.equals(repass)){
+        } else if(ketqua==3){
             signupView.showErrorValida();
             return;
         }else {
@@ -69,4 +69,10 @@ public class SignupController {
     public void setSignupView(SignupTabFragment signupView) {
         this.signupView = signupView;
     }
+
+
+
+
+
+
 }

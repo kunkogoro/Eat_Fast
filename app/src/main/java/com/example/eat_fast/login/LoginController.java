@@ -50,7 +50,7 @@ public class LoginController {
                             break;
                         case 2:
                             loginView.showLoginSuccess();
-
+;
                             Bundle bundle = msg.getData();
 
                             User user = (User) bundle.getSerializable("user");

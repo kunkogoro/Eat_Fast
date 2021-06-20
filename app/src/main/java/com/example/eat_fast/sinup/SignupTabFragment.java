@@ -28,18 +28,19 @@ public class SignupTabFragment extends Fragment {
 
         getView(root);
 
-        event();
+        eventCheckErro();
 
         return root;
     }
 
-    void event(){
+    void eventCheckErro(){
 
         sinup.setOnClickListener(v -> {
             String user = username.getText().toString().trim();
             String email = this.email.getText().toString().trim();
             String pass = password.getText().toString().trim();
             String repass = this.repass.getText().toString().trim();
+
             signupController.register(user,pass,repass,email);
         });
 

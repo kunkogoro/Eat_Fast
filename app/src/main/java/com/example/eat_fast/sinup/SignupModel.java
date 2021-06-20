@@ -115,4 +115,19 @@ public class SignupModel {
     public void setContext(Context context) {
         this.context = context;
     }
+
+    public int checkUser(String user, String pass,String repass,String email) {
+
+        if (!CheckEmail.emailValidator(email)) {  // gọi classs checkEmail  để check email
+            return 2;
+        }
+        else if (user.isEmpty() || pass.isEmpty()  || repass.isEmpty()) {  //  chưa viết method CheckEmty ở đây nhưng logic là vậy
+            return 1;
+
+        } else if (!pass.equals(repass)) {  // hàm check Pass
+            return 3;
+
+        }
+        return 0;
+    }
 }
