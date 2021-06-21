@@ -71,9 +71,14 @@ public class SignupModel {
                 handler.sendMessage(message);
             }
         }){
+            // cái này claf chuyển 3 tham số đến database để đăng kí
+            // ông xem mấy video t gửi trong nhóm lf hiểu à
+            // là gửi dữ liệu thôi hả , chứ k phải là lưu tài khoản này lên sever hả
+            // gửi dữ liệu lên trênseerver nó xử lí đăng kí
+            // ông xem video á dễ lắm
             @Nullable
             @org.jetbrains.annotations.Nullable
-            @Override
+            @Override  // cái lưu dữ liệu vào database là phương thức này hả ông
             protected Map<String, String> getParams() throws AuthFailureError {
 
                 Map<String, String> map = new HashMap<>();
@@ -121,7 +126,7 @@ public class SignupModel {
         if (!CheckEmail.emailValidator(email)) {  // gọi classs checkEmail  để check email
             return 2;
         }
-        else if (user.isEmpty() || pass.isEmpty()  || repass.isEmpty()) {  //  chưa viết method CheckEmty ở đây nhưng logic là vậy
+        else if (user.isEmpty() || pass.isEmpty()  || repass.isEmpty() ) {  //  chưa viết method CheckEmty ở đây nhưng logic là vậy
             return 1;
 
         } else if (!pass.equals(repass)) {  // hàm check Pass

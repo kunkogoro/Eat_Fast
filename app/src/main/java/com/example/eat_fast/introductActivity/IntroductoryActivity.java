@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,7 +19,9 @@ import com.example.eat_fast.menuHome.HomePageActivity;
 
 
 public class IntroductoryActivity extends AppCompatActivity {
-    private ImageView logo, appName, splashImg;
+    private ImageView logo, splashImg;
+
+    private TextView appName;
     private LottieAnimationView lottie;
     private SharedPreferences sharedPreferences;
     // Thời gian thoát activity
