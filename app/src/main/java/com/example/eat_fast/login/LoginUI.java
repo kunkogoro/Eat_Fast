@@ -34,7 +34,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class LoginTabFragment extends Fragment {
+public class LoginUI extends Fragment {
 
     private EditText username;
     private EditText password;
@@ -43,7 +43,7 @@ public class LoginTabFragment extends Fragment {
     private float v = 0;
     private LoginController loginController;
 
-    public LoginTabFragment() {
+    public LoginUI() {
     }
 
     @Nullable

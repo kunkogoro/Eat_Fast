@@ -1,28 +1,19 @@
 package com.example.eat_fast.login;
 
-import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.widget.ImageView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
-import com.android.volley.toolbox.ImageRequest;
-import com.android.volley.toolbox.Volley;
 import com.example.eat_fast.beens.User;
 import com.example.eat_fast.menuHome.HomePageActivity;
-import com.example.eat_fast.menuHome.HomePageFragment;
-
-import java.io.Serializable;
 
 public class LoginController {
 
     private LoginModel loginModel;
-    private LoginTabFragment loginView;
+    private LoginUI loginView;
 
     public LoginController() {
         this.loginModel = new LoginModel();
@@ -51,15 +42,15 @@ public class LoginController {
                         case 2:
                             loginView.showLoginSuccess();
 
-                            Bundle bundle = msg.getData();
-
-                            User user = (User) bundle.getSerializable("user");
-
-                            System.out.println("OK: " + user.toString());
+//                            Bundle bundle = msg.getData();
+//
+//                            User user = (User) bundle.getSerializable("user");
+//
+//                            System.out.println("OK: " + user.toString());
 
                             Intent intent = new Intent(loginView.getContext(), HomePageActivity.class);
 
-                            intent.putExtra("user", user);
+                     //       intent.putExtra("user", user);
 
                             loginView.getContext().startActivity(intent);
                             break;
@@ -79,7 +70,7 @@ public class LoginController {
         }
     }
 
-    public void setLoginView(LoginTabFragment loginView) {
+    public void setLoginView(LoginUI loginView) {
         this.loginView = loginView;
     }
 }

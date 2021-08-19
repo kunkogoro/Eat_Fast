@@ -20,6 +20,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.eat_fast.R;
 import com.example.eat_fast.beens.User;
 import com.example.eat_fast.login.LoginActivity;
+import com.example.eat_fast.shareReferences.DataLocalManager;
 import com.example.eat_fast.user.InfoUserActivity;
 
 import java.io.Serializable;
@@ -55,7 +56,7 @@ public class HomePageFragment extends Fragment {
 
     private RecyclerView recyListProduct1;
     private ImageView imageU;
-    private User user;
+  // private User user;
 
 
     public HomePageFragment() {
@@ -96,10 +97,10 @@ public class HomePageFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_home_page, container, false);
 
-        Bundle bundle = getArguments();
-        if (bundle != null){
-            user = (User) bundle.getSerializable("user");
-        }
+//        Bundle bundle = getArguments();
+//        if (bundle != null){
+//            user = (User) bundle.getSerializable("user");
+//        }
 
         getView(view);
 
@@ -119,10 +120,8 @@ public class HomePageFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent;
-                if (user != null){
+                if (DataLocalManager.getAccount() != null){
                     intent = new Intent(getContext(), InfoUserActivity.class);
-                    intent.putExtra("user", (Serializable) user);
-
                     startActivity(intent);
                 }else {
                     intent  = new Intent(getContext(), LoginActivity.class);

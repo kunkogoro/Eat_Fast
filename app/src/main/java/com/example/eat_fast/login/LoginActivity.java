@@ -22,6 +22,7 @@ import com.example.eat_fast.R;
 import com.example.eat_fast.beens.User;
 import com.example.eat_fast.connection.ConnecttionConfigure;
 import com.example.eat_fast.menuHome.HomePageActivity;
+import com.example.eat_fast.shareReferences.DataLocalManager;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -155,7 +156,10 @@ public class LoginActivity extends AppCompatActivity {
 
             }
 
-             intent.putExtra("user",user);
+            /// intent.putExtra("user",user);
+
+            DataLocalManager.setAccounts(user);
+
             startActivity(intent);
             finish();
 

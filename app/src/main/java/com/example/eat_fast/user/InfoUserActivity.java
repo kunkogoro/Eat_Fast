@@ -15,6 +15,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.eat_fast.R;
 import com.example.eat_fast.beens.User;
 import com.example.eat_fast.menuHome.HomePageActivity;
+import com.example.eat_fast.shareReferences.DataLocalManager;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -55,12 +56,14 @@ public class InfoUserActivity extends AppCompatActivity implements GoogleApiClie
             Auth.GoogleSignInApi.signOut(signInClient).setResultCallback(new ResultCallback<Status>() {
                 @Override
                 public void onResult(@NonNull @NotNull Status status) {
-                    if (status.isSuccess())
-                    startActivity(new Intent(InfoUserActivity.this, HomePageActivity.class));
-                    finish();
+                    if (status.isSuccess()){
+                        startActivity(new Intent(InfoUserActivity.this, HomePageActivity.class));
+                        finish();
+                    }
+
                 }
             });
-
+           DataLocalManager.setAccounts(null);
             startActivity(new Intent(this, HomePageActivity.class));
             finish();
 
@@ -69,9 +72,7 @@ public class InfoUserActivity extends AppCompatActivity implements GoogleApiClie
     }
     void init(){
 
-        Intent intent = getIntent();
-
-        user = (User) intent.getSerializableExtra("user");
+        user = DataLocalManager.getAccount();
 
 
         tvName.setText(user.getName());

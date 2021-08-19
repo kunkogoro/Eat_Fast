@@ -21,6 +21,7 @@ import com.example.eat_fast.beens.User;
 import com.example.eat_fast.connection.ConnecttionConfigure;
 import com.example.eat_fast.date.ConvertDate;
 import com.example.eat_fast.encode.MD5;
+import com.example.eat_fast.shareReferences.DataLocalManager;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -54,8 +55,9 @@ public class LoginModel {
                     message.what = LoginConfiguration.ERROR_PASS;
                     handler.sendMessage(message);
                 }else {
-                    User user = null;
+
                     try {
+
                         JSONObject object = new JSONObject(response);
 
                         String id = object.getString("id");
@@ -69,17 +71,21 @@ public class LoginModel {
                         String imgLink = object.getString("hinh");
                         String ngay_tao = object.getString("time");
 
-                      user = new User(id,loai,tai_khoan,email,phone, Integer.parseInt(ttkh) ,Integer.parseInt(ttdg),name,imgLink, ConvertDate.changeDate(ngay_tao));
+                        User user = new User(id,loai,tai_khoan,email,phone, Integer.parseInt(ttkh) ,Integer.parseInt(ttdg),name,imgLink, ConvertDate.changeDate(ngay_tao));
+
+                        DataLocalManager.setAccounts(user);
+
+                        Message message = new Message();
+                        message.what = LoginConfiguration.SUCCESS;
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("user", (Serializable) user);
+                        message.setData(bundle);
+                        handler.sendMessage(message);
 
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                    Message message = new Message();
-                    message.what = LoginConfiguration.SUCCESS;
-                    Bundle bundle = new Bundle();
-                    bundle.putSerializable("user", (Serializable) user);
-                    message.setData(bundle);
-                    handler.sendMessage(message);
+
                 }
             }
         }, new Response.ErrorListener() {

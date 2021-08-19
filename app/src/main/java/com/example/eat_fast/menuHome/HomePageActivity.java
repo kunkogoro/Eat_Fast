@@ -64,14 +64,12 @@ public class HomePageActivity extends AppCompatActivity {
 
                         frameLayout = new HomePageFragment();
 
-
-
-                        if (user != null){
-                               System.out.println("TAG MAIN: " + user.toString());
-                            Bundle bundle = new Bundle();
-                            bundle.putSerializable("user", (Serializable) user);
-                            frameLayout.setArguments(bundle);
-                        }
+//                        if (user != null){
+//                               System.out.println("TAG MAIN: " + user.toString());
+//                            Bundle bundle = new Bundle();
+//                            bundle.putSerializable("user", (Serializable) user);
+//                            frameLayout.setArguments(bundle);
+//                        }
 
                         break;
                     case 4:

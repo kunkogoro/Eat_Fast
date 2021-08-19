@@ -25,7 +25,7 @@ public class LoginAdapter extends FragmentPagerAdapter {
 
         switch (position){
             case 0:
-                LoginTabFragment loginTabFragment = new LoginTabFragment();
+                LoginUI loginTabFragment = new LoginUI();
                 System.out.println("so1");
                 return loginTabFragment;
             case 1:
