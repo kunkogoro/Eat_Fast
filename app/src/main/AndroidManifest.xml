@@ -12,10 +12,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Eat_Fast"
+        android:name=".shareReferences.MyApplication"
         tools:ignore="AllowBackup">
         <activity android:name=".forgotpass.EnterEmail" />
         <activity android:name=".forgotpass.VerifyCode" />
         <activity android:name=".forgotpass.ChangePassword" />
+
         <activity android:name=".user.InfoUserActivity" />
         <activity android:name=".login.LoginActivity">
 

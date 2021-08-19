@@ -73,14 +73,19 @@ public class LoginModel {
 
                         User user = new User(id,loai,tai_khoan,email,phone, Integer.parseInt(ttkh) ,Integer.parseInt(ttdg),name,imgLink, ConvertDate.changeDate(ngay_tao));
 
-                        DataLocalManager.setAccounts(user);
-
-                        Message message = new Message();
-                        message.what = LoginConfiguration.SUCCESS;
-                        Bundle bundle = new Bundle();
-                        bundle.putSerializable("user", (Serializable) user);
-                        message.setData(bundle);
-                        handler.sendMessage(message);
+                        if (ttkh.equals("0")){
+                            Message message = new Message();
+                            message.what = LoginConfiguration.ACCOUNT_INVALID;
+                            handler.sendMessage(message);
+                        }else {
+                            DataLocalManager.setAccounts(user);
+                            Message message = new Message();
+                            message.what = LoginConfiguration.SUCCESS;
+                            Bundle bundle = new Bundle();
+                            bundle.putSerializable("user", (Serializable) user);
+                            message.setData(bundle);
+                            handler.sendMessage(message);
+                        }
 
                     } catch (JSONException e) {
                         e.printStackTrace();

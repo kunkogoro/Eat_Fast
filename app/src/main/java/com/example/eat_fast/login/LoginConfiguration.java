@@ -6,5 +6,6 @@ public class LoginConfiguration {
   public static int ERROR_PASS = 1;
   public static int SUCCESS = 2;
   public static int ERROR_SYSTEM = 3;
+  public static int ACCOUNT_INVALID = 4;
 
 }

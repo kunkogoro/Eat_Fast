@@ -111,11 +111,20 @@ public class LoginUI extends Fragment {
     void showLoginSuccess(){
         Toast.makeText(getContext(), "Đăng nhập thành công.", Toast.LENGTH_SHORT).show();
     }
+    void showLoginFailByAccount(){
+        Toast.makeText(getContext(), "Tài khoản không được bỏ trống.", Toast.LENGTH_SHORT).show();
+    }
+    void showLoginFailByPass(){
+        Toast.makeText(getContext(), "Password không được bỏ trống.", Toast.LENGTH_SHORT).show();
+    }
     void showLoginFail(){
         Toast.makeText(getContext(), "Sai mật khẩu, vui lòng nhập lại.", Toast.LENGTH_SHORT).show();
     }
     void showUserNotExitst(){
         Toast.makeText(getContext(), "Tài khoản không tồn tại.", Toast.LENGTH_SHORT).show();
+    }
+    void showAccountInvalid(){
+        Toast.makeText(getContext(), "Tài khoản của bạn đã bị khóa, vui lòng liên hệ Admin để xử lý.", Toast.LENGTH_SHORT).show();
     }
     void showErrorSystem(){
         Toast.makeText(getContext(), "Lỗi hệ thống, vui lòng thử lại sau.", Toast.LENGTH_SHORT).show();

@@ -24,6 +24,6 @@ import java.security.NoSuchAlgorithmException;
         }
 
         public static void main(String[] args) {
-            System.out.println(MD5.md5("user002"));
+            System.out.println(MD5.md5("user004"));
         }
     }

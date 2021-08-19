@@ -11,22 +11,27 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:orientation="horizontal"
+        android:layout_marginTop="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints">
 
-        <ImageView
-            android:id="@+id/hinh"
+        <androidx.cardview.widget.CardView
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_weight=".2"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.092"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.042" />
+            app:cardCornerRadius="50dp"
+            android:layout_marginRight="2dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="2dp"
+            app:cardElevation="5dp"
+            >
+            <ImageView
+                android:id="@+id/hinh"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                 />
+        </androidx.cardview.widget.CardView>
 
         <TextView
             android:id="@+id/name"
@@ -35,8 +40,9 @@
             android:layout_marginTop="30dp"
             android:layout_weight="1"
             android:text="Nguyễn Như Ngọc"
-            android:textSize="25sp"
+            android:textSize="22sp"
             android:textStyle="bold"
+            android:layout_marginLeft="5dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/hinh"
             app:layout_constraintTop_toTopOf="parent" />
@@ -51,6 +57,7 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         app:layout_constraintVertical_bias="0"
         tools:ignore="MissingConstraints">
@@ -111,8 +118,8 @@
             android:id="@+id/dangxuat"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
             android:layout_gravity="center"
+            android:layout_marginTop="20dp"
             android:background="@drawable/activity_login_bg_button"
             android:text="Đăng xuất"
             android:textColor="@color/white"

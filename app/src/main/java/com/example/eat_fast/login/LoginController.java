@@ -21,10 +21,17 @@ public class LoginController {
 
     void login(String username, String password) {
 
-        if (username.isEmpty() || password.isEmpty()) {
+        if (username.isEmpty() && password.isEmpty()) {
             loginView.showErrorEmpty();
             return;
-        } else {
+        }if (username.isEmpty()) {
+            loginView.showLoginFailByAccount();
+            return;
+        }if (password.isEmpty()) {
+            loginView.showLoginFailByPass();
+            return;
+        }
+        else {
             loginModel.setContext(loginView.getContext());
             Handler handler = new Handler() {
 
@@ -56,6 +63,9 @@ public class LoginController {
                             break;
                         case 3:
                             loginView.showErrorSystem();
+                            break;
+                        case 4:
+                            loginView.showAccountInvalid();
                             break;
                     }
 
