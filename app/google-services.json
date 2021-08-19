@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "239229909648",
+    "project_id": "eat-fast-e460e",
+    "storage_bucket": "eat-fast-e460e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:239229909648:android:8a7662bb1a771b4cdcf615",
+        "android_client_info": {
+          "package_name": "com.example.eat_fast"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "239229909648-lsa5jsmqbvlcdds1phcvh92rtt74konf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCamJ3CSczxrN_83W7iN02GGp5-nEK3VPw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "239229909648-lsa5jsmqbvlcdds1phcvh92rtt74konf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
