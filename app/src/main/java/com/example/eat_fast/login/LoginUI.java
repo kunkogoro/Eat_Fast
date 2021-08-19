@@ -1,5 +1,6 @@
 package com.example.eat_fast.login;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +25,9 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.eat_fast.R;
 import com.example.eat_fast.connection.ConnecttionConfigure;
+import com.example.eat_fast.forgotpass.ChangePassword;
+import com.example.eat_fast.forgotpass.EnterEmail;
+import com.example.eat_fast.forgotpass.VerifyCode;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -69,6 +73,10 @@ public class LoginUI extends Fragment {
 
                 loginController.login(user,pass);
             }
+        });
+
+        forgotpass.setOnClickListener(v->{
+            startActivity(new Intent(getContext(), EnterEmail.class));
         });
     }
 
