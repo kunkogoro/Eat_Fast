@@ -64,7 +64,7 @@ public class EnterEmail extends AppCompatActivity {
                         intent.putExtra("id", String.valueOf(getId(email)));
                         startActivity(intent);
                     } else {
-                        Toast.makeText(this, "Email không tồn tại", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "Email không tồn tại trong hệ thống", Toast.LENGTH_SHORT).show();
                     }
                 }
             }

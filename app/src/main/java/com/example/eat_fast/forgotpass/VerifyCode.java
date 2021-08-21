@@ -38,12 +38,15 @@ public class VerifyCode extends AppCompatActivity {
             Intent intent1 = new Intent(this, ChangePassword.class);
             intent1.putExtra("id", id);
 //            startActivity(intent1);
-            if(isRightCode()){
-                startActivity(intent1);
-            }else{
-                Toast.makeText(this, "Mã OTP không đúng", Toast.LENGTH_SHORT).show();
+            if (!isBlankCode()) {
+                Toast.makeText(this, "Yêu cầu không để trống mã", Toast.LENGTH_SHORT).show();
+            } else {
+                if (isRightCode()) {
+                    startActivity(intent1);
+                } else {
+                    Toast.makeText(this, "Mã OTP không đúng", Toast.LENGTH_SHORT).show();
+                }
             }
-
         });
     }
 
@@ -51,6 +54,15 @@ public class VerifyCode extends AppCompatActivity {
         String inputCode = digitCode1.getText().toString() + digitCode2.getText().toString() + digitCode3.getText().toString() + digitCode4.getText().toString();
         return inputCode.equals(code);
     }
+
+    public boolean isBlankCode() {
+        String code1 = digitCode1.getText().toString();
+        String code2 = digitCode2.getText().toString();
+        String code3 = digitCode3.getText().toString();
+        String code4 = digitCode4.getText().toString();
+        return !code1.isEmpty() && !code2.isEmpty() && !code3.isEmpty() && !code4.isEmpty();
+    }
+
 
     public void autoNextEdit() {
         digitCode1.addTextChangedListener(new TextWatcher() {

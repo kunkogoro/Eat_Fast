@@ -88,7 +88,7 @@ public class ChangePassword extends AppCompatActivity {
                 Toast.makeText(this, "Yêu cầu nhập mật khẩu", Toast.LENGTH_SHORT).show();
             } else {
                 if (pass.length() < 8) {
-                    Toast.makeText(this, "Mật khẩu phải ít nhất 8 kí tự", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Mật khẩu phải nhiều hơn 8 kí tự", Toast.LENGTH_SHORT).show();
                 }else{
                     if(isEqualPass()){
                         updatePassword();
@@ -101,7 +101,6 @@ public class ChangePassword extends AppCompatActivity {
             }
         });
     }
-
 
     public void anhxa() {
         buttonChangePass = findViewById(R.id.buttonSubmitPassword);
